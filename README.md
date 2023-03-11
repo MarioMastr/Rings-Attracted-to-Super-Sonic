@@ -1,10 +1,2 @@
-# Always Use Dash/Peel-Out Animation
-Use the Mania Dash or Super Peel-Out animation regardless of if the Super Peel-Out is on or off.
-
-[GameBanana Page](https://gamebanana.com/mods/396881)
 # Rings-Attracted-to-Super-Sonic
-# Rings-Attracted-to-Super-Sonic
-# Rings-Attracted-to-Super-Sonic
-# Rings-Attracted-to-Super-Sonic
-# Rings-Attracted-to-Super-Sonic
-# Rings-Attracted-to-Super-Sonic
+Makes rings in a certain vicinity attract to Super Sonic (or any other super form) akin to the Lightning Shield.
