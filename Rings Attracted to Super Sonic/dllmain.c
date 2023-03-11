@@ -29,7 +29,7 @@ void InitModAPI(void)
     Ring_State_Normal          = Mod.GetPublicFunction(NULL, "Ring_State_Normal");
     Player_CheckCollisionTouch = Mod.GetPublicFunction(NULL, "Player_CheckCollisionTouch");
     
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Ring_State_Normal"), Ring_State_Normal_RP, true);
+    Mod.RegisterStateHook(Ring_State_Normal, Ring_State_Normal_RP, true);
 }
 
 #if RETRO_USE_MOD_LOADER
