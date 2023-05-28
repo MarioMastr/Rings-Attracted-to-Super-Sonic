@@ -20,6 +20,7 @@ void InitModAPI(void)
     
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Ring_State_Normal"), Ring_State_Normal_RP, false);
     Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_RP, true);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Ring_State_Lost"), Ring_State_Lost_RP, false);
     
     MOD_REGISTER_OBJECT_HOOK(Ring);
     MOD_REGISTER_OBJECT_HOOK(Player);
