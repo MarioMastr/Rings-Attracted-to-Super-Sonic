@@ -9,6 +9,11 @@ void Ring_State_Normal_RP(void)
     Ring_Collect_RP();
 }
 
+void Ring_State_Lost_RP(void)
+{
+    Ring_Collect_RP();
+}
+
 bool32 Ring_Collect_RP(bool32 skipped)
 {
     RSDK_THIS(Ring);
