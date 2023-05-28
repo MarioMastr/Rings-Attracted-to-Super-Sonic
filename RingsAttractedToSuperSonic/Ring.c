@@ -1,18 +1,9 @@
+#include "GameAPI/Game.h"
 #include "Player.h"
 #include "Ring.h"
 
 ObjectRing *Ring;
 ObjectPlayer *Player;
-
-void Ring_State_Normal_RP(void)
-{
-    Ring_Collect_RP();
-}
-
-void Ring_State_Lost_RP(void)
-{
-    Ring_Collect_RP();
-}
 
 bool32 Ring_Collect_RP(bool32 skipped)
 {
@@ -27,16 +18,17 @@ bool32 Ring_Collect_RP(bool32 skipped)
             self->stateDraw    = Ring_Draw_Normal;
             self->active       = ACTIVE_NORMAL;
             self->storedPlayer = player;
+            return true;
         }
     }
     
-    return true;
+    return false;
 }
 
 bool32 Ring_State_Attracted_RP(bool32 skipped)
 {
     RSDK_THIS(Ring);
-    EntityPlayer *player = RSDK_GET_ENTITY(SLOT_PLAYER1, Player);
+    EntityPlayer *player = self->storedPlayer;
     if (player->superState == SUPERSTATE_SUPER) {
         int32 startX = self->position.x;
         int32 startY = self->position.y;
@@ -69,8 +61,14 @@ bool32 Ring_State_Attracted_RP(bool32 skipped)
         
         self->position.x = startX + self->velocity.x;
         self->position.y = startY + self->velocity.y;
+
+        Ring_Collect();
+
+        ObjectZone *Zone = Mod.FindObject("Zone");
+        self->animator.frameID = Zone->ringFrame;
+
+        return true;
     }
     
-    Ring_Collect();
-    return true;
+    return false;
 }

@@ -173,7 +173,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\GameAPI\C\GameAPI\Game.c" />
-    <ClCompile Include="..\dllmain.c" />
+    <ClCompile Include="dllmain.c" />
     <ClCompile Include="Ring.c" />
   </ItemGroup>
   <ItemGroup>
