@@ -1,7 +1,7 @@
 #ifndef OBJ_PLAYER_H
 #define OBJ_PLAYER_H
 
-#include "Game.h"
+#include "GameAPI/Game.h"
 
 typedef enum {
     ANI_IDLE,
