@@ -1,6 +1,5 @@
 #include "../GameAPI/C/GameAPI/Game.h"
 #include "Ring.h"
-#include "Zone.h"
 
 #if RETRO_USE_MOD_LOADER
 DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
