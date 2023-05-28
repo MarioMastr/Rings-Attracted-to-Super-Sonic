@@ -85,6 +85,7 @@ void Ring_State_Circular(void);
 void Ring_State_Path(void);
 void Ring_State_Track(void);
 extern void (*Ring_State_Lost)(void);
+void Ring_State_Lost_RP(void);
 void Ring_State_LostFX(void);
 void Ring_State_Big(void);
 extern void (*Ring_State_Attracted)(void);
