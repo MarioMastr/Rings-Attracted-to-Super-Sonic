@@ -17,6 +17,7 @@ target_include_directories(RingsAttractedToSuperSonic PRIVATE
 )
 
 set_target_properties(RingsAttractedToSuperSonic PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
+set_target_properties(RingsAttractedToSuperSonic PROPERTIES PREFIX "")
 
 unset(MOD_NAME CACHE)
 unset(OUTPUT_NAME CACHE)
