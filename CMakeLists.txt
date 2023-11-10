@@ -16,8 +16,7 @@ target_include_directories(RingsAttractedToSuperSonic PRIVATE
     GameAPI/C/
 )
 
-set_target_properties(RingsAttractedToSuperSonic PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
-set_target_properties(RingsAttractedToSuperSonic PROPERTIES PREFIX "")
+set_target_properties(RingsAttractedToSuperSonic PROPERTIES OUTPUT_NAME ${OUTPUT_NAME} PREFIX "")
 
 unset(MOD_NAME CACHE)
 unset(OUTPUT_NAME CACHE)
