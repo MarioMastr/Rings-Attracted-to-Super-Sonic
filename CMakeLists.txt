@@ -19,9 +19,9 @@ target_include_directories(RingsAttractedToSuperSonic PRIVATE
 set_target_properties(RingsAttractedToSuperSonic PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 
 if(ANDROID)
-    set_target_properties(RingsAttractedToSuperSonic PREFIX "lib")
+    set_target_properties(RingsAttractedToSuperSonic PROPERTIES PREFIX "lib")
 else()
-    set_target_properties(RingsAttractedToSuperSonic PREFIX "")
+    set_target_properties(RingsAttractedToSuperSonic PROPERTIES PREFIX "")
 endif()
     
 unset(MOD_NAME CACHE)
