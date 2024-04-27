@@ -249,3 +249,6 @@ Ignored/
 .idea/
 android/key/
 android/local.properties
+build/.ninja_log
+build/.ninja_deps
+build/RingsAttractedToSuperSonic.dylib
