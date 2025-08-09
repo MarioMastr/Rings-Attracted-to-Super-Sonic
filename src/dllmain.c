@@ -7,26 +7,40 @@ DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
 #endif
 
 void (*Ring_Collect)(void);
-void (*Ring_State_Normal)(void);
-void (*Ring_State_Lost)(void);
 void (*Ring_State_Attracted)(void);
 void (*Ring_Draw_Normal)(void);
 
+DEFINE_HOOK_FUNC(Ring_Collect, void, void) //  bool32 Ring_Collect_RP(bool32 skipped)
+{
+    RSDK_THIS(Ring);
+
+    Original_Ring_Collect();
+
+    foreach_active(Player, player)
+    {
+        if (self->state != Ring_State_Attracted && player->superState == SUPERSTATE_SUPER
+                 && RSDK.CheckObjectCollisionTouchCircle(self, TO_FIXED(80), player, TO_FIXED(1))) {
+            self->drawPos.x    = 0;
+            self->state        = Ring_State_Attracted;
+            self->stateDraw    = Ring_Draw_Normal;
+            self->active       = ACTIVE_NORMAL;
+            self->storedPlayer = player;
+        }
+    }
+}
+
 void InitModAPI(void)
 {
-    Ring_State_Normal = Mod.GetPublicFunction(NULL, "Ring_State_Normal");
-    Ring_State_Lost = Mod.GetPublicFunction(NULL, "Ring_State_Lost");
     Ring_State_Attracted = Mod.GetPublicFunction(NULL, "Ring_State_Attracted");
     Ring_Draw_Normal = Mod.GetPublicFunction(NULL, "Ring_Draw_Normal");
     Ring_Collect = Mod.GetPublicFunction(NULL, "Ring_Collect");
     
-    Mod.RegisterStateHook(Ring_State_Normal, Ring_State_Normal_Lost_Hook, true);
-    Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_Hook, true);
-    Mod.RegisterStateHook(Ring_State_Lost, Ring_State_Normal_Lost_Hook, true);
+    Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_RP, true);
     
     MOD_REGISTER_OBJECT_HOOK(Ring);
     MOD_REGISTER_OBJECT_HOOK(Player);
-    MOD_REGISTER_OBJECT_HOOK(Zone);
+
+    REGISTER_HOOK_FUNC(Ring_Collect);
 }
 
 #if RETRO_USE_MOD_LOADER

@@ -54,8 +54,6 @@ extern ObjectRing *Ring;
 extern void (*Ring_Collect)(void);
 
 // States
-extern void (*Ring_State_Normal)(void);
-extern void (*Ring_State_Lost)(void);
 extern void (*Ring_State_Attracted)(void);
 
 // State Hooks
