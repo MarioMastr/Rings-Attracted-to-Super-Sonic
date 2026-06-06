@@ -1,5 +1,3 @@
-#include "GameAPI/Game.h"
-#include "Player.h"
 #include "Ring.h"
 
 ObjectRing *Ring;

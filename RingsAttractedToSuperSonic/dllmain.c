@@ -1,4 +1,3 @@
-#include "../GameAPI/C/GameAPI/Game.h"
 #include "Ring.h"
 
 #if RETRO_USE_MOD_LOADER
