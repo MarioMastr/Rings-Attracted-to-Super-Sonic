@@ -4,6 +4,28 @@ ObjectRing *Ring;
 ObjectPlayer *Player;
 ObjectZone *Zone;
 
+#if RETRO_MOD_LOADER_VER == 2
+bool32 Ring_State_Normal_Lost_Hook(bool32 skipped)
+{
+    RSDK_THIS(Ring);
+
+    foreach_active(Player, player)
+    {
+        if (self->state != Ring_State_Attracted && player->superState == SUPERSTATE_SUPER
+                 && RSDK.CheckObjectCollisionTouchCircle(self, TO_FIXED(80), player, TO_FIXED(1))) {
+            self->drawPos.x    = 0;
+            self->state        = Ring_State_Attracted;
+            self->stateDraw    = Ring_Draw_Normal;
+            self->active       = ACTIVE_NORMAL;
+            self->storedPlayer = player;
+            return true;
+        }
+    }
+
+    return false;
+}
+#endif
+
 bool32 Ring_State_Attracted_Hook(bool32 skipped)
 {
     RSDK_THIS(Ring);
