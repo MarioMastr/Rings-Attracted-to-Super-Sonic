@@ -4,7 +4,7 @@ ObjectRing *Ring;
 ObjectPlayer *Player;
 ObjectZone *Zone;
 
-bool32 Ring_State_Attracted_RP(bool32 skipped)
+bool32 Ring_State_Attracted_Hook(bool32 skipped)
 {
     RSDK_THIS(Ring);
     EntityPlayer *player = self->storedPlayer;

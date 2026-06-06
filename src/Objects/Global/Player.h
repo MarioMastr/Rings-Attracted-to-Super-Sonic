@@ -449,11 +449,4 @@ struct EntityPlayer {
 // Object Struct
 extern ObjectPlayer *Player;
 
-// Extra Entity Functions
-extern void (*Player_GiveRings)(EntityPlayer *player, int32 amount, bool32 playSfx);
-extern bool32 (*Player_CheckCollisionTouch)(EntityPlayer *player, void *e, Hitbox *entityHitbox);
-
-// States
-extern void (*Player_State_Transform)(void);
-
 #endif //! OBJ_PLAYER_H

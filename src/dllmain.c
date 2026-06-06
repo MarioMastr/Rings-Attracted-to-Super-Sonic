@@ -35,10 +35,11 @@ void InitModAPI(void)
     Ring_Draw_Normal = Mod.GetPublicFunction(NULL, "Ring_Draw_Normal");
     Ring_Collect = Mod.GetPublicFunction(NULL, "Ring_Collect");
     
-    Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_RP, true);
+    Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_Hook, true);
     
     MOD_REGISTER_OBJECT_HOOK(Ring);
     MOD_REGISTER_OBJECT_HOOK(Player);
+    MOD_REGISTER_OBJECT_HOOK(Zone);
 
     REGISTER_HOOK_FUNC(Ring_Collect);
 }

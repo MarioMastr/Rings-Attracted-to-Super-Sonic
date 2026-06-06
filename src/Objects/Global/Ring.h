@@ -58,7 +58,6 @@ extern void (*Ring_State_Attracted)(void);
 
 // State Hooks
 bool32 Ring_State_Attracted_Hook(bool32 skipped);
-bool32 Ring_State_Normal_Lost_Hook(bool32 skipped);
 
 // Draw States
 extern void (*Ring_Draw_Normal)(void);
