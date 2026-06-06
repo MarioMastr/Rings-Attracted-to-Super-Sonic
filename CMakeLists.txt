@@ -5,7 +5,7 @@ project(RingsAttractedToSuperSonic)
 set(MOD_NAME RingsAttractedToSuperSonic CACHE STRING "The mod directory to look into")
 set(OUTPUT_NAME "RingsAttractedToSuperSonic" CACHE STRING "The name of the built library")
 
-set(RETRO_REVISION 2 CACHE STRING "What revision to compile for. Defaults to Origins = 3")
+set(RETRO_REVISION 2 CACHE STRING "What revision to compile for. Defaults to Mania = 2")
 set(RETRO_MOD_LOADER_VER 3 CACHE STRING "Sets the mod loader version. Defaults to latest")
 set(GAME_VERSION 6 CACHE STRING "The game version to use. Defaults to 6 == Last Steam release")
 

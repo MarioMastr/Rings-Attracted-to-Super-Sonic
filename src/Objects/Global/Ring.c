@@ -4,6 +4,7 @@ ObjectRing *Ring;
 ObjectPlayer *Player;
 ObjectZone *Zone;
 
+#if RETRO_MOD_LOADER_VER == 2
 bool32 Ring_State_Normal_Lost_Hook(bool32 skipped)
 {
     RSDK_THIS(Ring);
@@ -20,9 +21,10 @@ bool32 Ring_State_Normal_Lost_Hook(bool32 skipped)
             return true;
         }
     }
-    
+
     return false;
 }
+#endif
 
 bool32 Ring_State_Attracted_Hook(bool32 skipped)
 {

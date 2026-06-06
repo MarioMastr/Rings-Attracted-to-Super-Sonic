@@ -54,13 +54,17 @@ extern ObjectRing *Ring;
 extern void (*Ring_Collect)(void);
 
 // States
+extern void (*Ring_State_Attracted)(void);
+#if RETRO_MOD_LOADER_VER == 2
 extern void (*Ring_State_Normal)(void);
 extern void (*Ring_State_Lost)(void);
-extern void (*Ring_State_Attracted)(void);
+#endif
 
 // State Hooks
 bool32 Ring_State_Attracted_Hook(bool32 skipped);
+#if RETRO_MOD_LOADER_VER == 2
 bool32 Ring_State_Normal_Lost_Hook(bool32 skipped);
+#endif
 
 // Draw States
 extern void (*Ring_Draw_Normal)(void);
