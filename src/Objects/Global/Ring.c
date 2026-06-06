@@ -1,9 +1,10 @@
-#include "Ring.h"
+#include "Game.h"
 
 ObjectRing *Ring;
 ObjectPlayer *Player;
+ObjectZone *Zone;
 
-bool32 Ring_Collect_RP(bool32 skipped)
+bool32 Ring_State_Normal_Lost_Hook(bool32 skipped)
 {
     RSDK_THIS(Ring);
 
@@ -23,7 +24,7 @@ bool32 Ring_Collect_RP(bool32 skipped)
     return false;
 }
 
-bool32 Ring_State_Attracted_RP(bool32 skipped)
+bool32 Ring_State_Attracted_Hook(bool32 skipped)
 {
     RSDK_THIS(Ring);
     EntityPlayer *player = self->storedPlayer;
@@ -62,7 +63,6 @@ bool32 Ring_State_Attracted_RP(bool32 skipped)
 
         Ring_Collect();
 
-        ObjectZone *Zone = Mod.FindObject("Zone");
         self->animator.frameID = Zone->ringFrame;
 
         return true;

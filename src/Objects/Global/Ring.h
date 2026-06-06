@@ -1,7 +1,7 @@
 #ifndef OBJ_RING_H
 #define OBJ_RING_H
 
-#include "Player.h"
+#include "Game.h"
 
 typedef enum {
     RING_TYPE_NORMAL,
@@ -20,16 +20,16 @@ typedef enum {
 } RingMoveTypes;
 
 // Object Class
-typedef struct {
+struct ObjectRing {
     RSDK_OBJECT
     Hitbox hitbox;
     int32 pan;
     uint16 aniFrames;
     uint16 sfxRing;
-} ObjectRing;
+};
 
 // Entity Class
-typedef struct {
+struct EntityRing {
     RSDK_ENTITY
     StateMachine(state);
     StateMachine(stateDraw);
@@ -45,19 +45,22 @@ typedef struct {
     int32 speed;
     Vector2 drawPos;
     Animator animator;
-} EntityRing;
+};
 
 // Object Struct
 extern ObjectRing *Ring;
 
+// Extra Entity Functions
 extern void (*Ring_Collect)(void);
 
 // States
 extern void (*Ring_State_Normal)(void);
 extern void (*Ring_State_Lost)(void);
 extern void (*Ring_State_Attracted)(void);
-bool32 Ring_State_Attracted_RP(bool32 skipped);
-bool32 Ring_State_Normal_Lost_RP(bool32 skipped);
+
+// State Hooks
+bool32 Ring_State_Attracted_Hook(bool32 skipped);
+bool32 Ring_State_Normal_Lost_Hook(bool32 skipped);
 
 // Draw States
 extern void (*Ring_Draw_Normal)(void);

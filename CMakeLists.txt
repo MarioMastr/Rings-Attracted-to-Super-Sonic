@@ -5,8 +5,8 @@ project(RingsAttractedToSuperSonic)
 set(MOD_NAME RingsAttractedToSuperSonic CACHE STRING "The mod directory to look into")
 set(OUTPUT_NAME "RingsAttractedToSuperSonic" CACHE STRING "The name of the built library")
 
-set(RETRO_REVISION 3 CACHE STRING "What revision to compile for. Defaults to Origins = 3")
-set(RETRO_MOD_LOADER_VER 2 CACHE STRING "Sets the mod loader version. Defaults to latest")
+set(RETRO_REVISION 2 CACHE STRING "What revision to compile for. Defaults to Origins = 3")
+set(RETRO_MOD_LOADER_VER 3 CACHE STRING "Sets the mod loader version. Defaults to latest")
 set(GAME_VERSION 6 CACHE STRING "The game version to use. Defaults to 6 == Last Steam release")
 
 option(MANIA_FIRST_RELEASE "Whether or not to build Mania's first release. Defaults to false" OFF)
@@ -23,6 +23,7 @@ else()
 endif()
 
 option(MOD_INCLUDE_EDITOR "Whether or not to include editor functions. Defaults to true" ON)
+option(MOD_INCREMENTAL_BUILD "Whether or not to build all objects separately (for quicker dev-->build iterations). Defaults to false." OFF)
 
 find_path(GAMEAPI
   NAMES
@@ -44,15 +45,27 @@ else()
   message(FATAL_ERROR "GameAPI not found for ${MOD_NAME}. Clone it in the mod's folder.")
 endif()
 
-add_library(${PROJECT_NAME} SHARED
-    ${GAMEAPI}/C/GameAPI/Game.c
-    ${MOD_NAME}/dllmain.c
-    ${MOD_NAME}/Ring.c
-)
+if(MOD_INCREMENTAL_BUILD)
+    include(cmake/Objects.cmake)
+    set(MOD_SOURCES
+        ${GAMEAPI}/C/GameAPI/Game.c
+        src/dllmain.c
+        ${GENERATED_SOURCES}
+    )
+else()
+    set(MOD_SOURCES
+        ${GAMEAPI}/C/GameAPI/Game.c
+        src/dllmain.c
+        src/Objects/All.c
+    )
+endif()
+
+add_library(${PROJECT_NAME} SHARED ${MOD_SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${MOD_NAME}/
-    ${GAMEAPI}/C/
+    src/
+    src/Objects/
+    ${GAMEAPI}/C/GameAPI/
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})

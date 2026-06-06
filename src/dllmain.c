@@ -1,4 +1,4 @@
-#include "Ring.h"
+#include "Game.h"
 
 #if RETRO_USE_MOD_LOADER
 DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
@@ -20,12 +20,13 @@ void InitModAPI(void)
     Ring_Draw_Normal = Mod.GetPublicFunction(NULL, "Ring_Draw_Normal");
     Ring_Collect = Mod.GetPublicFunction(NULL, "Ring_Collect");
     
-    Mod.RegisterStateHook(Ring_State_Normal, Ring_Collect_RP, true);
-    Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_RP, true);
-    Mod.RegisterStateHook(Ring_State_Lost, Ring_Collect_RP, true);
+    Mod.RegisterStateHook(Ring_State_Normal, Ring_State_Normal_Lost_Hook, true);
+    Mod.RegisterStateHook(Ring_State_Attracted, Ring_State_Attracted_Hook, true);
+    Mod.RegisterStateHook(Ring_State_Lost, Ring_State_Normal_Lost_Hook, true);
     
     MOD_REGISTER_OBJECT_HOOK(Ring);
     MOD_REGISTER_OBJECT_HOOK(Player);
+    MOD_REGISTER_OBJECT_HOOK(Zone);
 }
 
 #if RETRO_USE_MOD_LOADER

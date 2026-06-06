@@ -5,6 +5,8 @@ GameAPI/
 build/.cmake
 build/build.ninja
 build/compile_commands.json
+__pycache__/
+gameapi_util*.py
 
 # CMake artifacts
 CMakeFiles/
