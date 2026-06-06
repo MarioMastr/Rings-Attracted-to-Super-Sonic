@@ -33,7 +33,6 @@ bld/
 bin/
 [Bb]in/
 [Oo]bj/
-cmake/
 
 .github/
 
