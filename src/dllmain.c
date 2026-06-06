@@ -10,7 +10,7 @@ void (*Ring_Collect)(void);
 void (*Ring_State_Attracted)(void);
 void (*Ring_Draw_Normal)(void);
 
-DEFINE_HOOK_FUNC(Ring_Collect, void, void) //  bool32 Ring_Collect_RP(bool32 skipped)
+DEFINE_GAME_HOOK_FUNC(Ring_Collect, void, void) //  bool32 Ring_Collect_RP(bool32 skipped)
 {
     RSDK_THIS(Ring);
 
