@@ -59,14 +59,14 @@ extern void (*Ring_State_Attracted)(void);
 #if RETRO_MOD_LOADER_VER == 2
 extern void (*Ring_State_Normal)(void);
 extern void (*Ring_State_Lost)(void);
-#elif RETRO_MOD_LOADER_VER == 3
-DECLARE_PUBLIC_FUNC_HOOK(Ring_Collect, void);
 #endif
 
-// State Hooks
+// Function Hooks
 bool32 Ring_State_Attracted_Hook(bool32 skipped);
 #if RETRO_MOD_LOADER_VER == 2
 bool32 Ring_State_Normal_Lost_Hook(bool32 skipped);
+#elif RETRO_MOD_LOADER_VER == 3
+DECLARE_PUBLIC_FUNC_HOOK(Ring_Collect, void);
 #endif
 
 // Draw States
