@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(RingsAttractedToSuperSonic)
 
-set(MOD_NAME RingsAttractedToSuperSonic CACHE STRING "The mod directory to look into")
-set(OUTPUT_NAME "RingsAttractedToSuperSonic" CACHE STRING "The name of the built library")
+set(MOD_NAME ${PROJECT_NAME} CACHE STRING "The name of the mod")
+set(OUTPUT_NAME ${MOD_NAME} CACHE STRING "The name of the built library")
 
 set(RETRO_REVISION 2 CACHE STRING "What revision to compile for. Defaults to Mania = 2")
 set(RETRO_MOD_LOADER_VER 3 CACHE STRING "Sets the mod loader version. Defaults to latest")
@@ -23,7 +23,7 @@ else()
 endif()
 
 option(MOD_INCLUDE_EDITOR "Whether or not to include editor functions. Defaults to true" ON)
-option(MOD_INCREMENTAL_BUILD "Whether or not to build all objects separately (for quicker dev-->build iterations). Defaults to false." OFF)
+option(MOD_INCREMENTAL_BUILD "Whether or not to build all objects separately (for quicker dev-->build iterations). Defaults to false." ON)
 
 find_path(GAMEAPI
   NAMES
@@ -46,17 +46,17 @@ else()
 endif()
 
 if(MOD_INCREMENTAL_BUILD)
-    include(cmake/Objects.cmake)
+    include(Objects.cmake)
     set(MOD_SOURCES
-        ${GAMEAPI}/C/GameAPI/Game.c
-        src/dllmain.c
+        ${GAMEAPI}/CPP/GameAPI/Game.cpp
+        src/Mod.cpp
         ${GENERATED_SOURCES}
     )
 else()
     set(MOD_SOURCES
-        ${GAMEAPI}/C/GameAPI/Game.c
-        src/dllmain.c
-        src/Objects/All.c
+        ${GAMEAPI}/CPP/GameAPI/Game.cpp
+        src/Mod.cpp
+        src/Objects/All.cpp
     )
 endif()
 
@@ -65,7 +65,7 @@ add_library(${PROJECT_NAME} SHARED ${MOD_SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE
     src/
     src/Objects/
-    ${GAMEAPI}/C/GameAPI/
+    ${GAMEAPI}/CPP/GameAPI/
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
