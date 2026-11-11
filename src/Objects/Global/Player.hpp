@@ -170,9 +170,6 @@ struct Player : GameObject::Entity {
     // ----------------
 
     struct Static : GameObject::Static {
-    };
-
-    struct ModStatic {
 #if MANIA_USE_PLUS
         TABLE(int32 sonicPhysicsTable[64],
               { 0x60000, 0xC00,  0x1800, 0x600,  0x8000,  0x600, 0x68000, -0x40000, 0x30000, 0x600,  0xC00,  0x300, 0x4000, 0x300, 0x38000, -0x20000,
@@ -374,6 +371,9 @@ struct Player : GameObject::Entity {
         SoundFX sfxTransform2;
         bool32 gotHit[PLAYER_COUNT];
 #endif
+    };
+
+    struct ModStatic {
     };
 
     // ----------------
