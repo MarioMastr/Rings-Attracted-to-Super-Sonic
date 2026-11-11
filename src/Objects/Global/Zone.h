@@ -41,7 +41,7 @@ typedef enum {
 } ZoneIDs;
 
 // Object Class
-struct ObjectZone {
+typedef struct {
     RSDK_OBJECT
     int32 actID;
     StateMachine(stageFinishCallback);
@@ -100,10 +100,10 @@ struct ObjectZone {
     bool32 teleportActionActive;
     int32 randSeed;
     #endif
-};
+} ObjectZone;
 
 // Entity Class
-struct EntityZone {
+typedef struct {
     RSDK_ENTITY
     StateMachine(state);
     StateMachine(stateDraw);
@@ -111,7 +111,7 @@ struct EntityZone {
     int32 timer;
     int32 fadeSpeed;
     int32 fadeColor;
-};
+} EntityZone;
 
 // Object Struct
 extern ObjectZone *Zone;

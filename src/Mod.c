@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "All.h"
 
 #if RETRO_USE_MOD_LOADER
 DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
@@ -12,27 +13,6 @@ void (*Ring_Draw_Normal)(void);
 #if RETRO_MOD_LOADER_VER == 2
 void (*Ring_State_Normal)(void);
 void (*Ring_State_Lost)(void);
-#endif
-
-#if RETRO_MOD_LOADER_VER == 3
-DEFINE_GAME_HOOK_FUNC(Ring_Collect, void, void)
-{
-    RSDK_THIS(Ring);
-
-    Original_Ring_Collect();
-
-    foreach_active(Player, player)
-    {
-        if (self->state != Ring_State_Attracted && player->superState == SUPERSTATE_SUPER
-                 && RSDK.CheckObjectCollisionTouchCircle(self, TO_FIXED(80), player, TO_FIXED(1))) {
-            self->drawPos.x    = 0;
-            self->state        = Ring_State_Attracted;
-            self->stateDraw    = Ring_Draw_Normal;
-            self->active       = ACTIVE_NORMAL;
-            self->storedPlayer = player;
-        }
-    }
-}
 #endif
 
 void InitModAPI(void)
@@ -56,7 +36,7 @@ void InitModAPI(void)
     MOD_REGISTER_OBJECT_HOOK(Zone);
 
 #if RETRO_MOD_LOADER_VER == 3
-    REGISTER_HOOK_FUNC(Ring_Collect);
+    REGISTER_FUNC_HOOK(Ring_Collect);
 #endif
 }
 

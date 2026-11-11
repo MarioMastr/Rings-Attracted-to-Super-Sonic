@@ -141,7 +141,7 @@ typedef enum {
 
 // Object Class
 #if MANIA_USE_PLUS
-struct ObjectPlayer {
+typedef struct {
     RSDK_OBJECT
     TABLE(int32 sonicPhysicsTable[64],
           { 0x60000, 0xC00,  0x1800, 0x600,  0x8000,  0x600, 0x68000, -0x40000, 0x30000, 0x600,  0xC00,  0x300, 0x4000, 0x300, 0x38000, -0x20000,
@@ -259,9 +259,9 @@ struct ObjectPlayer {
     StateMachine(configureGhostCB);
     bool32 (*canSuperCB)(bool32 isHUD);
     int32 superDashCooldown;
-};
+} ObjectPlayer;
 #else
-struct ObjectPlayer {
+typedef struct {
     RSDK_OBJECT
     int32 playerCount;
     TABLE(int32 sonicPhysicsTable[64],
@@ -343,11 +343,11 @@ struct ObjectPlayer {
     uint16 sfxOuttahere;
     uint16 sfxTransform2;
     bool32 gotHit[PLAYER_COUNT];
-};
+} ObjectPlayer;
 #endif
 
 // Entity Class
-struct EntityPlayer {
+typedef struct {
     RSDK_ENTITY
     StateMachine(state);
     StateMachine(nextAirState);
@@ -444,7 +444,7 @@ struct EntityPlayer {
 #if MANIA_USE_PLUS
     int32 uncurlTimer;
 #endif
-};
+} EntityPlayer;
 
 // Object Struct
 extern ObjectPlayer *Player;

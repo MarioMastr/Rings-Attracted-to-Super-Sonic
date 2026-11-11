@@ -46,16 +46,16 @@ else()
 endif()
 
 if(MOD_INCREMENTAL_BUILD)
-    include(cmake/Objects.cmake)
+    include(Objects.cmake)
     set(MOD_SOURCES
         ${GAMEAPI}/C/GameAPI/Game.c
-        src/dllmain.c
+        src/Mod.c
         ${GENERATED_SOURCES}
     )
 else()
     set(MOD_SOURCES
         ${GAMEAPI}/C/GameAPI/Game.c
-        src/dllmain.c
+        src/Mod.c
         src/Objects/All.c
     )
 endif()

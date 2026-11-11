@@ -1,4 +1,5 @@
-#include "Game.h"
+#include "Ring.h"
+#include "Zone.h"
 
 ObjectRing *Ring;
 ObjectPlayer *Player;
@@ -23,6 +24,25 @@ bool32 Ring_State_Normal_Lost_Hook(bool32 skipped)
     }
 
     return false;
+}
+#elif RETRO_MOD_LOADER_VER == 3
+DEFINE_GAME_FUNC_HOOK("Ring_Collect", Ring_Collect, void)
+{
+    RSDK_THIS(Ring);
+
+    Ring_Collect_Original();;
+
+    foreach_active(Player, player)
+    {
+        if (self->state != Ring_State_Attracted && player->superState == SUPERSTATE_SUPER
+                 && RSDK.CheckObjectCollisionTouchCircle(self, TO_FIXED(80), player, TO_FIXED(1))) {
+            self->drawPos.x    = 0;
+            self->state        = Ring_State_Attracted;
+            self->stateDraw    = Ring_Draw_Normal;
+            self->active       = ACTIVE_NORMAL;
+            self->storedPlayer = player;
+        }
+    }
 }
 #endif
 
