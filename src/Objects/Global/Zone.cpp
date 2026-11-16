@@ -9,7 +9,7 @@ namespace GameLogic
 // Object Registration
 // -------------------
 
-MOD_REGISTER_OBJECT_HOOK(Zone);
+MOD_REGISTER_OBJECT(Zone);
 
 // -------------
 // Entity Events

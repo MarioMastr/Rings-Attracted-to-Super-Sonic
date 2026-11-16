@@ -9,7 +9,7 @@ namespace GameLogic
 // Object Registration
 // -------------------
 
-MOD_REGISTER_OBJECT_HOOK(Camera);
+MOD_REGISTER_OBJECT(Camera);
 
 // -------------
 // Entity Events

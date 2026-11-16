@@ -12,10 +12,12 @@ using namespace GameLogic;
 
 void InitModAPI(void)
 {
+
     Ring::State_Attracted = Mod::PublicFunctions::Get(nullptr, "Ring_State_Attracted");
     Ring::Draw_Normal = Mod::PublicFunctions::Get(nullptr, "Ring_Draw_Normal");
     REGISTER_STATE_HOOK(Ring::State_Attracted, true);
 #if RETRO_MOD_LOADER_VER == 2
+    Ring::Collect = Mod::PublicFunctions::Get(nullptr, "Ring_Collect");
     Ring::State_Normal = Mod::PublicFunctions::Get(nullptr, "Ring_State_Normal");
     Ring::State_Lost = Mod::PublicFunctions::Get(nullptr, "Ring_State_Lost");
     REGISTER_STATE_HOOK(Ring::State_Normal, true);

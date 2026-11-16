@@ -1,6 +1,8 @@
 #include "Ring.hpp"
 #include "Zone.hpp"
 
+#include "Mod.hpp"
+
 using namespace RSDK;
 
 namespace GameLogic
@@ -63,6 +65,11 @@ bool32 Ring::State_Attracted_Hook(bool32 skipped)
         
         this->position.x = startX + this->velocity.x;
         this->position.y = startY + this->velocity.y;
+#if RETRO_MOD_LOADER_VER == 2
+        Collect();
+#elif RETRO_MOD_LOADER_VER == 3
+        Collect_Hook::Original();
+#endif
 
         this->animator.frameID = Zone::sVars->ringFrame;
 
@@ -91,9 +98,11 @@ bool32 Ring::State_Normal_Lost_Hook(bool32 skipped)
     return false;
 }
 #elif RETRO_MOD_LOADER_VER == 3
-DEFINE_PUBLIC_FUNC_HOOK(Ring::Collect_Hook, void, Ring *self)
+DEFINE_PUBLIC_FUNC_HOOK(Ring::Collect_Hook, void)
 {
-	Original(self);
+	Original();
+
+    RSDK_SELF(Ring);
 
     foreach_active(Player, player)
     {

@@ -74,6 +74,10 @@ struct Ring : GameObject::Entity {
     // Extra Entity Functions
     // ----------------------
 
+#if RETRO_MOD_LOADER_VER == 2
+    static void (*Collect)();
+#endif
+
     // -------------
     // Object States
     // -------------
@@ -99,7 +103,7 @@ struct Ring : GameObject::Entity {
     bool32 Ring_State_Normal_Hook(bool32 skipped);
     bool32 Ring_State_Lost_Hook(bool32 skipped);
 #elif RETRO_MOD_LOADER_VER == 3
-    DECLARE_GAME_FUNC_HOOK("Ring_Collect", Collect_Hook, void, Ring *self);
+    DECLARE_GAME_FUNC_HOOK("Ring_Collect", Collect_Hook, void);
 #endif
 
     // -------------------
