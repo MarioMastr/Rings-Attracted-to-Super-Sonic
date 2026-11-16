@@ -30,7 +30,7 @@ DEFINE_GAME_FUNC_HOOK("Ring_Collect", Ring_Collect, void)
 {
     RSDK_THIS(Ring);
 
-    Ring_Collect_Original();;
+    Ring_Collect_Original();
 
     foreach_active(Player, player)
     {
